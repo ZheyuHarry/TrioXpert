@@ -37,31 +37,36 @@ python run_RCL.py
 
 Take dataset D1 as an example.
 
-### Pre-training in SSL
+### Pre-training in data process pipeline 1.
 
 * `instance_dim`: The number of microservice instances. (default: 46)
 * `num_heads`: The number of attention heads in a Transformer Encoder. (default: 2)
 * `tf_layers`: The number of layers of Transformer Encoder. (default: 1)
-* `channel_dim`: The number of data channels. (default: 130)
+* `channel_dim`: The number of data channels. (default: 110)
 * `gnn_hidden_dim`: The hidden dimension of GraphSAGE. (default: 64)
 * `gnn_out_dim`: The output dimension of GraphSAGE. (default: 32)
-* `noise_rate`: Dropout ratio. (default: 0.3)
 * `gnn_layers`: The number of layers of GraphSAGE. (default: 2)
 * `gru_hidden_dim`: The hidden dimension of GRU. (default: 32)
 * `gru_layers`: The number of layers of GRU. (default: 1)
 * `epochs`: The training epochs. (default: 1000)
-* `batch_size`: The batch size. (default: 4)
-* `learning_rate`: The learning rate. (default: 0.001)
+* `batch_size`: The batch size. (default: 8)
+* `learning_rate`: The learning rate. (default: 0.0001)
 
-### Downstream tasks.
+### Downstream tasks in data process pipeline 1.
 
-* `split_ratio`: The ratio for splitting the initialization set and the test set. (default: 0.6)
-* `method & t_value`: The methods and parameters for aggregating ILD to obtain SLD. The method can be either 'num' or 'prob', representing the specified number and probability methods, respectively. 'num' can take 't_value' in the range [1, instance_dim], while 'prob' can take 't_value' in the range [0,1). (default: 'num', 3)
-* `q & level`: The initialize parameters for SPOT. (default: 0.1, 0.95)
+* `split_ratio`: The ratio for splitting the initialization set and the test set. (default: 0.7)
+* `q & level`: The initialize parameters for SPOT. (default: 0.21, 0.98)
 * `delay`: Consider anomalies with intervals smaller than the delay as the same failure. (default: 600)
 * `impact_window`: The impact range of a single failure. Functions similarly to 'before' and 'after'. (default: 300)
-* `before & after`: The failure injection time is inject_ts. Assuming the failure impact range is [inject_ts-before, inject_ts+after], take the data within this time window for analysis. (default: 59, 300)
-* `max_clusters`: The maximum number of clusters obtained from the cut tree in failure triage. (default: 25)
+* `before & after`: The failure injection time is inject_ts. Assuming the failure impact range is [inject_ts-before, inject_ts+after], take the data within this time window for analysis. (default: 300, 300)
+* `max_clusters`: The maximum number of clusters obtained from the cut tree in failure triage. (default: 50)
 * `verbose`: Control the output to be either concise or verbose. (default: False)
 
-More details can be found in the configuration file: ART/config/D1.yaml.
+### Filtering in data process pipeline 2 & 3.
+* `q`: The quantile parameter in the trace filter used to identify high-latency spans. (default: 0.95)
+* `priority_quantile`: The quantile parameter in the log filter used to identify distinct log entries. (default: 0.95)
+* `keywords`: The parameter in the log filter used to identify failure-related log entries. (default: [`failure`, `exception`, `error`, `debug`])
+
+### Large language model invocation.
+* `model_path`: The name specifying the path for loading the large language model. (dafault: `Qwen2.5-7B-Instruct`)
+* `max_token`: The parameter defines the maximum number of tokens allowed in text generation. (default: 512)
