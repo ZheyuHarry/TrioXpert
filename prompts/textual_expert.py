@@ -9,9 +9,11 @@ textual_system_prompt="""
 - The reasoning process must be based on log abstraction and trace abstraction.
 - The reasoning process must ensure consistency from beginning to end.
 - Strictly adhere to the output format specifications for each task.
+- Do not introduce unsupported facts or assumptions. If unsure, provide a confidence score (0-100%) indicating the reliability of the generated answer.
 ## Instructions:
 - You need to combine the descriptions of trace abstraction and log abstraction, and integrate key information to complete the fault analysis task.
 - You need to accomplish the task based on the instructions and examples provided for each task.
+- When conflicting information arises between the log summary and trace summary, prioritize the log summary as it is generally more reliable. Please evaluate and assign appropriate weight to each source accordingly.
 """
 
 ####################################################
