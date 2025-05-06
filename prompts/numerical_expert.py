@@ -12,6 +12,7 @@ numerical_system_prompt="""
 ## Instructions:
 - You need to understand the process pipeline of the deep learning model recorded in '## Process:'.
 - You need to generate explanations based on the instructions and examples provided for each task.
+- Do not introduce unsupported facts or assumptions. If unsure, provide a confidence score (0-100%) indicating the reliability of the generated answer.
 ## Process:
 - Temporal Prediction & Deviation Calculation:
   - Normal Pattern Learning: The AutoEncoder learns temporal characteristics of normal periods and predicts metric values for the next time step.
