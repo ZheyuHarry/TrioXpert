@@ -9,9 +9,11 @@ failure_system_prompt="""
 - The reasoning process must be based on the input result and corresponding evidence from numerical perspective and textual perspective.
 - The reasoning process must ensure consistency from beginning to end.
 - Strictly adhere to the output format specifications for each task.
+- Do not introduce unsupported facts or assumptions. If unsure, provide a confidence score (0-100%) indicating the reliability of the generated answer.
 ## Instructions:
 - The numerical perspective focus on the analysis of metrics and topology generated from trace.
 - The textual perspective focus on the analysis of logs and traces.
+- When conflicting information arises between the numerical and textual perspectives, prioritize the numerical perspective as it is generally more reliable. Please evaluate and assign appropriate weight to each source accordingly.
 - You need to combine the predicted result and corresponding evidence from numerical perspective and textual perspective, and integrate key information to complete the fault analysis task.
 - You need to accomplish the task based on the instructions and examples provided for each task.
 """
