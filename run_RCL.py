@@ -133,7 +133,6 @@ final_answers = Failure_Diagnosis(mode=["RCL"], numerical_answers=final_num_inpu
 ######################################################
 pattern = re.compile(r'<rcl_rank>(.*?)</rcl_rank>', re.DOTALL)
 
-# 解析函数
 def parse_rcl_rank(content):
     content = content.strip()
     
