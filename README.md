@@ -8,9 +8,6 @@ Dataset D1 is derived from a simulated e-commerce system based on a microservice
 
 Dataset D2 is sourced from the management system of a top-tier commercial bank and encompasses real-world business application scenarios. The dataset comprises a total of 18 instances, involving various components such as microservices, servers, databases, and Docker, and is categorized into six failure types. D2 has been used in the International AIOps Challenge 2021 https://aiops-challenge.com. Due to the non-disclosure agreement, we cannot make it publicly available. 
 
-Preprocessed samples are in the following folder:
-
-D1: TrioXpert/data/D1
 
 In the folder:
 - `cases`: There is one file in this directory.   
